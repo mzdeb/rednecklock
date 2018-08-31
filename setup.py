@@ -22,6 +22,8 @@ test_requirements = [
 ]
 
 dev_requirements = [
+    'ipdb',
+    'ipython',
     'punch.py==1.5.0',
     'Sphinx==1.7.8',
     'watchdog==0.9.0',
