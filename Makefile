@@ -47,11 +47,19 @@ clean-test: ## remove test and coverage artifacts
 	rm -f .coverage
 	rm -fr htmlcov/
 
-lint: ## check style with flake8
+flake8: ## check style with flake8
 	flake8 rednecklock tests
 
+isort:
+	isort --diff --recursive --check-only --quiet rednecklock
+
+check-typehints:
+	find rednecklock/ -type f -name "*.py" | grep -v -e "settings" -e "tests" | xargs mypy --config-file=mypy.ini
+
+lint: flake8 isort check-typehints
+
 test: ## run tests quickly with the default Python
-	py.test
+	python setup.py test
 	
 
 test-all: ## run tests on every Python version with tox
@@ -86,3 +94,9 @@ dist: clean ## builds source and wheel package
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
+
+install-test:
+	pip install -e .[test]
+
+install-dev:
+	pip install -e .[test] -e .[dev]

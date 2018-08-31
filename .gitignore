@@ -60,3 +60,9 @@ target/
 
 # pyenv python configuration file
 .python-version
+
+# mypy
+.mypy_cache
+
+# pytest
+.pytest_cache

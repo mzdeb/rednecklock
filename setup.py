@@ -10,11 +10,21 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    # TODO: put package requirements here
+    'mypy==0.620',
 ]
 
 test_requirements = [
-    # TODO: put package test requirements here
+    'flake8==3.5.0',
+    'isort==4.3.4',
+    'pytest==3.7.4',
+    'pytest-cov==2.5.1',
+    'tox==3.2.1',
+]
+
+dev_requirements = [
+    'punch.py==1.5.0',
+    'Sphinx==1.7.8',
+    'watchdog==0.9.0',
 ]
 
 setup(
@@ -48,6 +58,11 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
+    setup_requires=["pytest-runner"],
     test_suite='tests',
-    tests_require=test_requirements
+    tests_require=test_requirements,
+    extras_require={
+        'test': test_requirements,
+        'dev': dev_requirements,
+    },
 )
